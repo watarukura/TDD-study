@@ -1,0 +1,9 @@
+vendor/
+build/
+.idea/
+.php_cs.cache
+.phpunit.result.cache
+.env
+docker/nginx/cache/
+docker/nginx/run/nginx.pid
+docker/php-fpm/tmp/

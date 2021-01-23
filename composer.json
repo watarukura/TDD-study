@@ -1,0 +1,67 @@
+{
+    "name": "watarukura/php_vscode_project_template",
+    "description": "private template for write php code with visual studio code",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "watarukura",
+            "email": "what.r.j150@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpstan/phpstan": "^0.12.51",
+        "phpunit/phpunit": "^9.4",
+        "vimeo/psalm": "^4.0",
+        "zircote/swagger-php": "^3.1"
+    },
+    "require": {
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "aws/aws-sdk-php": "^3.164",
+        "doctrine/dbal": "^3.0",
+        "monolog/monolog": "^2.1",
+        "php-di/php-di": "^6.3",
+        "slim/psr7": "^1.2",
+        "slim/slim": "^4.5"
+    },
+    "scripts": {
+        "fix": [
+            "php-cs-fixer fix --allow-risky=yes public/",
+            "php-cs-fixer fix --allow-risky=yes src/",
+            "php-cs-fixer fix --allow-risky=yes config/",
+            "php-cs-fixer fix --allow-risky=yes tests/"
+        ],
+        "lint": "@fix --dry-run",
+        "test": [
+            "phpunit --configuration phpunit.xml",
+            "@lint"
+        ],
+        "test:coverage": [
+            "phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
+        ],
+        "analyse": [
+            "phpstan analyze --level=max src",
+            "phpstan analyze --level=max config",
+            "psalm"
+        ],
+        "openapi": [
+            "php cli/openapi_gen.php > doc/openapi.yml"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Test\\": "tests/"
+        }
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    }
+}
