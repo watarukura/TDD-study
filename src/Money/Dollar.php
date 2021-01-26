@@ -7,7 +7,7 @@ class Dollar
     /**
      * @var int $amount
      */
-    public $amount;
+    private $amount;
 
     public function __construct(int $amount)
     {
