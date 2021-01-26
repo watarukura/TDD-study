@@ -22,7 +22,7 @@ class MoneyTest extends TestCase
         self::assertFalse($five->equals(new Dollar(6)));
     }
 
-    public function testFrancMulitiplication(): void
+    public function testFrancMultiplication(): void
     {
         $five = new Franc(5);
         self::assertEquals(new Franc(10), $five->times(2));
