@@ -81,10 +81,11 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_YAML: true
+          VALIDATE_XML: true
           VALIDATE_JSON: true
           VALIDATE_MD: true
-          VALIDATE_BASH: true
-          VALIDATE_DOCKER: true
+#          VALIDATE_BASH: true
+#          VALIDATE_DOCKER: true
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
