@@ -23,6 +23,8 @@ class MoneyTest extends TestCase
         $five_franc = new Franc(5);
         self::assertTrue($five_franc->equals(new Franc(5)));
         self::assertFalse($five_franc->equals(new Franc(6)));
+
+        self::assertFalse($five_franc->equals(new Dollar(5)));
     }
 
     public function testFrancMultiplication(): void
