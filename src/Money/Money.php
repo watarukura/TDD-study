@@ -3,7 +3,7 @@
 
 namespace App\Money;
 
-abstract class Money
+class Money
 {
     /**
      * @var int $amount
@@ -23,14 +23,22 @@ abstract class Money
     public function equals(Money $money): bool
     {
         return $this->amount === $money->amount
-            && get_class($this) === (get_class($money));
+            && $this->currency === $money->currency;
     }
 
-    abstract public function times(int $multiplier): Money;
+    public function times(int $multiplier): Money
+    {
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
 
     public function currency(): string
     {
         return $this->currency;
+    }
+
+    public function toString(): string
+    {
+        return strval($this->amount) . ' ' . $this->currency;
     }
 
     public static function dollar(int $amount): Money
