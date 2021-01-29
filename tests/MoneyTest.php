@@ -2,8 +2,6 @@
 
 namespace App\Test;
 
-use App\Money\Dollar;
-use App\Money\Franc;
 use App\Money\Money;
 use PHPUnit\Framework\TestCase;
 
@@ -31,5 +29,11 @@ class MoneyTest extends TestCase
         $five = Money::franc(5);
         self::assertEquals(Money::franc(10), $five->times(2));
         self::assertEquals(Money::franc(15), $five->times(3));
+    }
+
+    public function testCurrency(): void
+    {
+        self::assertEquals('USD', Money::dollar(1)->currency());
+        self::assertEquals('CHF', Money::franc(1)->currency());
     }
 }
