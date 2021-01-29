@@ -2,6 +2,7 @@
 
 namespace App\Test;
 
+use App\Money\Bank;
 use App\Money\Money;
 use PHPUnit\Framework\TestCase;
 
@@ -25,5 +26,14 @@ class MoneyTest extends TestCase
     {
         self::assertEquals('USD', Money::dollar(1)->currency());
         self::assertEquals('CHF', Money::franc(1)->currency());
+    }
+
+    public function testSimpleAddition(): void
+    {
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, 'USD');
+        self::assertEquals(Money::dollar(10), $reduced);
     }
 }
