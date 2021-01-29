@@ -3,7 +3,7 @@
 
 namespace App\Money;
 
-class Money
+class Money implements Expression
 {
     /**
      * @var int $amount
@@ -49,5 +49,10 @@ class Money
     public static function franc(int $amount): Money
     {
         return new Money($amount, 'CHF');
+    }
+
+    public function plus(Money $addend): Expression
+    {
+        return new Money($this->amount + $addend->amount, $this->currency);
     }
 }
