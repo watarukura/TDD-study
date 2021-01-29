@@ -1,15 +1,21 @@
-# php_vscode_project_template
+# TDD-study
+
+![Lint and Test](https://github.com/watarukura/TDD-study/workflows/Lint%20and%20Test/badge.svg)
 
 ## 概要
 
-- PHPをVS Codeで書く
-- AutoSave + AutoFormat
-  - デフォルトのルールを使う
-  - ルールは最初からstrictに
-    - 途中からstrictにするのは難しいので
-- GitHub ActionsでCI
+- [テスト駆動開発](https://shop.ohmsha.co.jp/shopdetail/000000004967/)をPHPで写経する
 
 ## その他
 
-- PHP以外はgithub/super-linterでlintする
-  - 必要なVALIDATE_RULEだけtrueにする
+- GitHub ActionsでCI
+- ghコマンドに慣れる
+    1. `git switch -c feat/xxx`
+    2. write code
+    3. `git add .`
+    4. `git cz` (use https://github.com/streamich/git-cz)
+    5. `git push origin HEAD`
+    6. `gh pr create`
+    7. `gh pr merge`
+    8. `git pull -p`
+    ...
