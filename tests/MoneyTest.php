@@ -4,6 +4,7 @@ namespace App\Test;
 
 use App\Money\Bank;
 use App\Money\Money;
+use App\Money\Sum;
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase
@@ -35,5 +36,30 @@ class MoneyTest extends TestCase
         $bank = new Bank();
         $reduced = $bank->reduce($sum, 'USD');
         self::assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testReduceReturnsSum(): void
+    {
+        $five = Money::dollar(5);
+        $result = $five->plus($five);
+        $sum = Sum::cast($result);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, 'USD');
+        self::assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testReduceSum(): void
+    {
+        $sum = new Sum(Money::dollar(3), Money::dollar(4));
+        $bank = new Bank();
+        $result = $bank->reduce($sum, 'USD');
+        self::assertEquals(Money::dollar(7), $result);
+    }
+
+    public function testReduceMoney(): void
+    {
+        $bank = new Bank();
+        $result = $bank->reduce(Money::dollar(1), 'USD');
+        self::assertEquals(Money::dollar(1), $result);
     }
 }
