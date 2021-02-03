@@ -6,7 +6,7 @@ namespace App\Money;
 class Money implements Expression
 {
     /**
-     * @var int $amount
+     * @var float $amount
      */
     protected $amount;
     /**
@@ -14,7 +14,7 @@ class Money implements Expression
      */
     protected $currency;
 
-    public function __construct(int $amount, string $currency)
+    public function __construct(float $amount, string $currency)
     {
         $this->amount = $amount;
         $this->currency = $currency;
@@ -56,15 +56,16 @@ class Money implements Expression
         return new Sum($this, $addend);
     }
 
-    public function reduce(string $to): Money
+    public function reduce(Bank $bank, string $to): Money
     {
-        return $this;
+        $rate = $bank->rate($this->currency, $to);
+        return new Money($this->amount / $rate, $to);
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getAmount(): int
+    public function getAmount(): float
     {
         return $this->amount;
     }
