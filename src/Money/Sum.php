@@ -21,7 +21,7 @@ class Sum implements Expression
         $this->addend = $addend;
     }
 
-    public function reduce(string $to): Money
+    public function reduce(Bank $bank, string $to): Money
     {
         $amount = $this->augend->getAmount() + $this->addend->getAmount();
         return new Money($amount, $to);
