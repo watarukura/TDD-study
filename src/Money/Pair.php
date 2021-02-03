@@ -3,7 +3,6 @@
 
 namespace App\Money;
 
-
 use Exception;
 
 class Pair

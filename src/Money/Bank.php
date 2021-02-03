@@ -5,7 +5,7 @@ namespace App\Money;
 class Bank
 {
     /**
-     * @var array
+     * @var array<string, int>
      */
     private $rates = [];
 
